@@ -16,6 +16,7 @@ class ThemePreset extends Preset implements ThemePresetInterface
     {
         $this->updatePackageJson();
         $this->updateMix();
+        $this->copySCSS();
         $this->copyAssets();
         $this->setupTheme();
         $this->runCommands();
@@ -46,6 +47,16 @@ class ThemePreset extends Preset implements ThemePresetInterface
         File::copyDirectory(__DIR__ . '/stubs/assets', public_path('assets'));
         $this->copyLogo();
     }
+
+
+    /**
+     * Handles copying the SCSS directory into the resources
+     */
+    protected function copySCSS()
+    {
+        File::copyDirectory(__DIR__ . '/stubs/scss', resource_path('scss'));
+    }
+
 
     /**
      * Handles copying the logo to the spark logo directory
