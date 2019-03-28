@@ -63,7 +63,7 @@ class ThemePreset extends Preset implements ThemePresetInterface
      */
     protected function copyLogo()
     {
-        copy('themes/purpose/stubs/assets/img/brand/white-logo.png', public_path('img/white-logo.png'));
+        copy(__DIR__ . '/stubs/assets/img/brand/white-logo.png', public_path('img/white-logo.png'));
     }
 
 
