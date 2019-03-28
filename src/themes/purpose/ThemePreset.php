@@ -44,7 +44,17 @@ class ThemePreset extends Preset implements ThemePresetInterface
     {
         File::cleanDirectory(public_path('assets'));
         File::copyDirectory(__DIR__ . '/stubs/assets', public_path('assets'));
+        $this->copyLogo();
     }
+
+    /**
+     * Handles copying the logo to the spark logo directory
+     */
+    protected function copyLogo()
+    {
+        copy('themes/purpose/stubs/assets/img/brand/white-logo.png', public_path('img/white-logo.png'));
+    }
+
 
     /**
      * Overrides Spark Views with our Theme
