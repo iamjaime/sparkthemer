@@ -9,7 +9,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Iamjaime\\Sparktheme\\": "src/"
+      "Iamjaime\\sparktheme\\": "src/"
     }
   },
   "minimum-stability": "dev",
