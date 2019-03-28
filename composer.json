@@ -1,0 +1,17 @@
+{
+  "name": "iamjaime/sparktheme",
+  "description": "Laravel Spark Theme Solution",
+  "authors": [
+    {
+      "name": "Jaime Bernal",
+      "email": "codehead@codelegends.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Iamjaime\\Sparktheme\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {}
+}

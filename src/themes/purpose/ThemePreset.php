@@ -1,0 +1,66 @@
+<?php
+
+namespace Iamjaime\Sparktheme\themes\purpose;
+
+use Illuminate\Foundation\Console\Presets\Preset;
+use Illuminate\Support\Facades\File;
+use Iamjaime\sparktheme\contracts\ThemePreset as ThemePresetInterface;
+
+class ThemePreset extends Preset implements ThemePresetInterface
+{
+
+    /**
+     * Installs the Presets
+     */
+    public function install()
+    {
+        $this->updatePackageJson();
+        $this->updateMix();
+        $this->copyAssets();
+        $this->setupTheme();
+        $this->runCommands();
+    }
+
+    /**
+     * Handles overriding the current package json with our theme's package json
+     */
+    protected function updatePackageJson()
+    {
+        copy(__DIR__ . '/stubs/config/package.json', base_path('package.json'));
+    }
+
+    /**
+     * Handles updating the laravel mix configurations
+     */
+    protected function updateMix()
+    {
+        copy(__DIR__ . '/stubs/config/webpack.mix.js', base_path('webpack.mix.js'));
+    }
+
+    /**
+     * Handles copying the theme's default assets ( stock images etc. )
+     */
+    protected function copyAssets()
+    {
+        File::cleanDirectory(public_path('assets'));
+        File::copyDirectory(__DIR__ . '/stubs/assets', public_path('assets'));
+    }
+
+    /**
+     * Overrides Spark Views with our Theme
+     */
+    protected function setupTheme()
+    {
+        File::cleanDirectory(resource_path('views/vendor/spark'));
+        File::copyDirectory(__DIR__ . '/stubs/spark', resource_path('views/vendor/spark'));
+    }
+
+    /**
+     * Run the necessary NPM commands
+     */
+    protected function runCommands()
+    {
+        exec('npm install');
+        exec('npm run dev');
+    }
+}
