@@ -74,6 +74,16 @@ class ThemePreset extends Preset implements ThemePresetInterface
     {
         File::cleanDirectory(resource_path('views/vendor/spark'));
         File::copyDirectory(__DIR__ . '/stubs/spark', resource_path('views/vendor/spark'));
+        $this->setupWelcomePage();
+    }
+
+
+    /**
+     * Handles setting up the welcome page
+     */
+    protected function setupWelcomePage()
+    {
+        copy(__DIR__ . '/stubs/welcome.blade.php', resource_path('views/welcome.blade.php'));
     }
 
     /**
